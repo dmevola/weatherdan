@@ -7,6 +7,7 @@ var cityReturned = "";
 var currentDate = moment().format('MM-DD-YYYY');
 var latVal = "";
 var longVal = "";
+var iconEl = "";
 
 function getWeather() {
     var queryUrl1 = "https://api.openweathermap.org/data/2.5/weather?&units=imperial&appid=35de209ea2cd44495c1feb05459c71ed&q=" + city;
@@ -35,6 +36,8 @@ function getWeather() {
             return response.json()
             .then(function(response) {
                 uvIndexEl = response.current.uvi;
+                iconEl = response.current.weather[0].icon
+                $("#current-icon").attr("src", "https://openweathermap.org/img/w/" + iconEl + ".png")
                 $("#current-uv").text(uvIndexEl)
               }
             )}
