@@ -2,13 +2,17 @@ var city = "";
 var tempEl = "";
 var windEl = "";
 var humidityEl = "";
-var uvindexEl = "";
+var uvIndexEl = "";
 var cityReturned = "";
 var currentDate = moment().format('MM-DD-YYYY');
+var latVal = "";
+var longVal = "";
 
 function getWeather() {
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?&units=imperial&appid=35de209ea2cd44495c1feb05459c71ed&q=" + city;
-    fetch(queryURL).then(function(response) {
+    var queryUrl1 = "https://api.openweathermap.org/data/2.5/weather?&units=imperial&appid=35de209ea2cd44495c1feb05459c71ed&q=" + city;
+    
+
+    fetch(queryUrl1).then(function(response) {
     if (response.ok)
     return response.json()
     .then(function(response) {
@@ -17,13 +21,24 @@ function getWeather() {
         windEl = response.wind.speed
         humidityEl = response.main.humidity
         cityReturned = response.name
-        // uvindexEl = 
+        latVal = response.coord.lat
+        longVal = response.coord.lon
         $("#current-city-header").text(cityReturned)
         $("#current-date-h5").text(currentDate)
         $("#current-temp").text(tempEl)
         $("#current-wind").text(windEl)
         $("#current-humidity").text(humidityEl)
-    }
+
+        var queryUrl2 = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latVal + "&lon=" + longVal + "&exclude=hourly,daily&appid=35de209ea2cd44495c1feb05459c71ed"
+        fetch(queryUrl2).then(function(response) {
+            if (response.ok)
+            return response.json()
+            .then(function(response) {
+                uvIndexEl = response.current.uvi;
+                $("#current-uv").text(uvIndexEl)
+              }
+            )}
+        )}
     )}
     )};
 
