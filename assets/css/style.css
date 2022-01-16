@@ -1,0 +1,6 @@
+.heading {
+    background-image: linear-gradient(to right, rgb(0, 128,255), rgb(0,0,153));
+    text-align: center;
+    color: white;
+    padding: 1rem;
+}
