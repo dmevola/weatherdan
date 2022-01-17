@@ -9,3 +9,12 @@ input {
     width:75%;
 } */
 
+#forecast-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center/space-between;
+}
+
+.forecast {
+    margin: 10px;
+}
