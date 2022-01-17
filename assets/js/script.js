@@ -35,7 +35,7 @@ function getWeather() {
         $("#current-wind").text(windEl)
         $("#current-humidity").text(humidityEl)
 
-        var queryUrl2 = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latVal + "&lon=" + longVal + "&exclude=minutely,hourly&appid=35de209ea2cd44495c1feb05459c71ed"
+        var queryUrl2 = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latVal + "&lon=" + longVal + "&exclude=minutely,hourly&units=imperial&appid=35de209ea2cd44495c1feb05459c71ed"
         fetch(queryUrl2).then(function(response) {
             if (response.ok)
             return response.json()
@@ -57,9 +57,9 @@ function getWeather() {
                 $("#forecast-date3").text(forecastDateEl3)
                 $("#forecast-date4").text(forecastDateEl4)
                 $("#forecast-date5").text(forecastDateEl5)
-                forecastIcon1 = response.daily[0].weather[0].icon
+                forecastIcon1 = response.daily[1].weather[0].icon
                 $("#forecast-icon1").attr("src", "https://openweathermap.org/img/w/" + forecastIcon1 + ".png")
-                forecastIcon2 = response.daily[1].weather[0].icon
+                forecastIcon2 = response.daily[2].weather[0].icon
                 $("#forecast-icon2").attr("src", "https://openweathermap.org/img/w/" + forecastIcon2 + ".png")
                 forecastIcon3 = response.daily[3].weather[0].icon
                 $("#forecast-icon3").attr("src", "https://openweathermap.org/img/w/" + forecastIcon3 + ".png")
@@ -67,6 +67,38 @@ function getWeather() {
                 $("#forecast-icon4").attr("src", "https://openweathermap.org/img/w/" + forecastIcon4 + ".png")
                 forecastIcon5 = response.daily[5].weather[0].icon
                 $("#forecast-icon5").attr("src", "https://openweathermap.org/img/w/" + forecastIcon5 + ".png")
+                forecastTemp1 = response.daily[1].temp.max
+                $("#forecast-temp1").text("Temp: " + forecastTemp1 + " F")
+                forecastTemp2 = response.daily[2].temp.max
+                $("#forecast-temp2").text("Temp: " + forecastTemp2 + " F")
+                forecastTemp3 = response.daily[3].temp.max
+                $("#forecast-temp3").text("Temp: " + forecastTemp3 + " F")
+                forecastTemp4 = response.daily[4].temp.max
+                $("#forecast-temp4").text("Temp: " + forecastTemp4 + " F")
+                forecastTemp5 = response.daily[5].temp.max
+                $("#forecast-temp5").text("Temp: " + forecastTemp5 + " F")
+                forecastWind1 = response.daily[1].wind_speed
+                $("#forecast-wind1").text("Wind: " + forecastWind1 + " mph")
+                forecastWind2 = response.daily[2].wind_speed
+                $("#forecast-wind2").text("Wind: " + forecastWind2 + " mph")
+                forecastWind3 = response.daily[3].wind_speed
+                $("#forecast-wind3").text("Wind: " + forecastWind3 + " mph")
+                forecastWind4 = response.daily[4].wind_speed
+                $("#forecast-wind4").text("Wind: " + forecastWind4 + " mph")
+                forecastWind5 = response.daily[5].wind_speed
+                $("#forecast-wind5").text("Wind: " + forecastWind5 + " mph")
+                forecastHumidity1 = response.daily[1].humidity
+                $("#forecast-humidity1").text("Humidity: " + forecastHumidity1)
+                forecastHumidity2 = response.daily[2].humidity
+                $("#forecast-humidity2").text("Humidity: " + forecastHumidity2)
+                forecastHumidity3 = response.daily[3].humidity
+                $("#forecast-humidity3").text("Humidity: " + forecastHumidity3)
+                forecastHumidity4 = response.daily[4].humidity
+                $("#forecast-humidity4").text("Humidity: " + forecastHumidity4)
+                forecastHumidity5 = response.daily[5].humidity
+                $("#forecast-humidity5").text("Humidity: " + forecastHumidity5)
+                
+
                 
               }
             )}
