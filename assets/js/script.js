@@ -13,6 +13,7 @@ var forecastDateEl2 = moment().add(2,'days').format('MM-DD-YYYY');
 var forecastDateEl3 = moment().add(3,'days').format('MM-DD-YYYY');
 var forecastDateEl4 = moment().add(4,'days').format('MM-DD-YYYY');
 var forecastDateEl5 = moment().add(5,'days').format('MM-DD-YYYY');
+var searchHistory = [];
 
 function getWeather() {
     var queryUrl1 = "https://api.openweathermap.org/data/2.5/weather?&units=imperial&appid=35de209ea2cd44495c1feb05459c71ed&q=" + city;
@@ -22,6 +23,8 @@ function getWeather() {
     if (response.ok)
     return response.json()
     .then(function(response) {
+        searchHistory.push(city)
+        localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
         console.log(response)
         tempEl = response.main.temp
         windEl = response.wind.speed
