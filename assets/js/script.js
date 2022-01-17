@@ -113,10 +113,43 @@ function getWeather() {
 function searchFunction() {
     event.preventDefault();
     city = $("#city-input").val();
+    var elementli = $("<p>")
+    var elementButton = $("<button>").attr("class", "btn btn-lg btn-secondary col-12").attr("type", "button").attr("id", "history-button").attr("value", city).text(city);
+    $("#searchHistory").append(elementli, elementButton)
     getWeather();
 }
+
+var searchButton = function() {
+    event.preventDefault();
+    city = $(this).val();
+    getWeather();
+}
+
+var displayHistory = function(){
+  
+    searchHistory = JSON.parse(localStorage.getItem("searchHistory"))
+  
+    if (searchHistory == null) {
+      searchHistory = [];
+    } else { for (i = 0; i < searchHistory.length; i++) {
+      
+      var elementli = $("<p>")
+      var elementButton = $("<button>").attr("class", "btn btn-lg btn-secondary col-12").attr("type", "button").attr("id", "history-button").attr("value", searchHistory[i]).text(searchHistory[i]);
+           
+      $("#searchHistory").append(elementli, elementButton)
+  
+    }}
+    
+  }
+
 
 //event listener
 $("#search-button").on("click", searchFunction)
 
+// $("#history-button").on("click", searchButton)
+$(document).on("click", "#history-button", searchButton)
 
+
+
+
+displayHistory()
