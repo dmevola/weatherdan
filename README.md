@@ -14,5 +14,7 @@ A 5-day forecast is also presented with temp, wind speed, and humidity.
 
 WeatherDan leverages openweathermap.org for API forecast information. You can find documentation [here](http://openweathermap.org/)
 
+Its **production URL** is https://dmevola.github.io/weatherdan/
+
 ### Who is WeatherDan?
 WeatherDan was built by [Dan Evola](http://dmevola.github.io/portfolio/), who was once a real life college news weatherman for a semester or two. 
