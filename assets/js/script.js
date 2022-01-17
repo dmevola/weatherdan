@@ -39,6 +39,13 @@ function getWeather() {
                 iconEl = response.current.weather[0].icon
                 $("#current-icon").attr("src", "https://openweathermap.org/img/w/" + iconEl + ".png")
                 $("#current-uv").text(uvIndexEl)
+                if (uvIndexEl >= 5) {
+                    $("#current-uv").attr("class", "bg-danger")
+                } else if (uvIndexEl >= 2 && uvIndexEl < 5) {
+                    $("#current-uv").attr("class", "bg-warning")
+                } else {
+                    $("#current-uv").attr("class", "bg-success")
+                } 
               }
             )}
         )}
